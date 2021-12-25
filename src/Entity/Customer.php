@@ -35,7 +35,7 @@ class Customer extends User
     private $advertisings;
 
     /**
-     * @ORM\ManyToMany(targetEntity=BankCard::class, mappedBy="customers", nullable=true)
+     * @ORM\ManyToMany(targetEntity=BankCard::class, mappedBy="customers")
      */
     private $bankCards;
 

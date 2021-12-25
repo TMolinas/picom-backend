@@ -35,4 +35,18 @@ class Kernel extends BaseKernel
             $routes->import('../config/{routes}.php');
         }
     }
+
+
+}
+
+class AppKernel extends Kernel
+{
+    public function registerBundles()
+    {
+        $bundles = [
+            // ...
+            new Vich\UploaderBundle\VichUploaderBundle(),
+            // ...
+        ];
+    }
 }
