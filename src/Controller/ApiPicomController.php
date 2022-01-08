@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Customer;
 use App\Entity\LoginForm;
 use App\Entity\User;
+use App\Service\FileUploader;
 use App\Repository\CustomerRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -42,7 +43,7 @@ class ApiPicomController extends AbstractController
     public function registration(Request $request, EntityManagerInterface $em, CustomerRepository $customerRepository)
 
     {
-
+       
         $encoders = [new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
 
@@ -102,6 +103,25 @@ class ApiPicomController extends AbstractController
         }
 
     /**
-     * Route("/api/advertisings"
+     * @Route("/uploadimage", name="uploadimage", methods={"POST"})
+     * @param string $uploadDir
      */
+    public function uploadImage(Request $request,FileUploader $uploader)
+    {
+        
+        $file = $request->files->get('picture');
+        $data=$request->request->all();
+        if (empty($file))
+        {
+            return new Response("No file specified",
+               Response::HTTP_UNPROCESSABLE_ENTITY, ['content-type' => 'application/json']);
+        }
+        $uploadDir="/picture/";
+        $filename = $file->getClientOriginalName();
+        $uploader->upload($uploadDir, $file, $filename);
+        return new Response("File uploaded",  Response::HTTP_OK,
+        ['content-type' => 'application/json']);
+    }
+
+
 }

@@ -39,14 +39,14 @@ class Kernel extends BaseKernel
 
 }
 
-class AppKernel extends Kernel
-{
-    public function registerBundles()
-    {
-        $bundles = [
-            // ...
-            new Vich\UploaderBundle\VichUploaderBundle(),
-            // ...
-        ];
-    }
-}
+// class AppKernel extends Kernel
+// {
+//     public function registerBundles()
+//     {
+//         $bundles = [
+//             // ...
+//             new Vich\UploaderBundle\VichUploaderBundle(),
+//             // ...
+//         ];
+//     }
+// }
